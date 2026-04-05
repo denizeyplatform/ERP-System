@@ -92,3 +92,50 @@ Sale happens → revenue recorded → expenses deducted → financial reports ge
 - Data Aggregation
 
 ---
+
+## 6. Manufacturing Management
+### Overview
+Handles production lifecycle from raw materials to finished goods.
+### Core Features
+- Production Planning
+- Raw Material Management
+- Work Order Tracking
+- Quality Assurance
+### Real-Life Flow
+Raw materials received → production process → quality check → stored as finished goods.
+### Technologies / Keywords
+- Workflow Engine
+- Production Scheduling
+- Quality Control Systems
+
+## 7. Sales & Distribution
+### Overview
+Manages sales operations and product delivery to customers.
+### Core Features
+- Sales Order Management
+- Customer Relationship Management (CRM)
+- Delivery Scheduling
+- Sales Tracking
+### Real-Life Flow
+Sales created → order processed → product delivered → sales recorded.
+### Technologies / Keywords
+- CRM Integration
+- Order Lifecycle Management
+- Delivery Tracking
+
+## 8. Procurement
+### Overview
+Handles purchasing operations from suppliers.
+### Core Features
+- Supplier Management
+- Purchase Orders (PO)
+- Approval Workflows
+- Goods Receiving
+### Real-Life Flow
+Company needs materials → creates PO → supplier delivers → payment processed.
+### Technologies / Keywords
+- Vendor Management System
+- Approval Workflow Engine
+- Inventory Sync
+
+
