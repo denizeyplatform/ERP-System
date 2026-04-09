@@ -17,28 +17,32 @@ namespace Template.Infrastructure.Persistance.Data
              : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            foreach (var entityType in builder.Model.GetEntityTypes())
-            {
-                if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
-                {
-                    builder.Entity(entityType.ClrType)
-                        .HasQueryFilter(
-                            GenerateIsDeletedFilter(entityType.ClrType));
-                }
-            }
-        }
-
-        private static LambdaExpression GenerateIsDeletedFilter(Type type)
-        {
-            var parameter = Expression.Parameter(type, "e");
-            var property = Expression.Property(parameter, "IsDeleted");
-            var condition = Expression.Equal(property, Expression.Constant(false));
-            return Expression.Lambda(condition, parameter);
-        }
 
 
         public DbSet<Employee> Employees { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    foreach (var entityType in builder.Model.GetEntityTypes())
+        //    {
+        //        if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
+        //        {
+        //            builder.Entity(entityType.ClrType)
+        //                .HasQueryFilter(
+        //                    GenerateIsDeletedFilter(entityType.ClrType));
+        //        }
+        //    }
+        //}
+
+        //private static LambdaExpression GenerateIsDeletedFilter(Type type)
+        //{
+        //    var parameter = Expression.Parameter(type, "e");
+        //    var property = Expression.Property(parameter, "IsDeleted");
+        //    var condition = Expression.Equal(property, Expression.Constant(false));
+        //    return Expression.Lambda(condition, parameter);
+        //}
+
+
+
     }
 }

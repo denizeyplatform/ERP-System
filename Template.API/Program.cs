@@ -8,7 +8,7 @@ using Serilog.Sinks.File; // For File sink and RollingInterval
 using Template.API.Configuration;
 using Template.API.Middleware;
 using Template.Application.Configuration;
-using Template.Infrastructure.Configuration; // Add the correct using directive for AddInfrastructure if it exists in your project
+using Template.Infrastructure.Configuration; 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,11 +17,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddAPI(builder.Configuration);
+
+
+builder.Services.AddAPI();
+
+
+
 builder.Services.AddApplication();
+builder.Services.AddJWTConfig();
+
+
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddIdentityConfig();
+
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()

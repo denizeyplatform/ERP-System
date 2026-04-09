@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Template.Application.CQRS.Command;
+using Template.Application.CQRS.Employee.Command;
 using Template.Domain.Entities;
 
-namespace Template.Application.CQRS.Handler.Commands
+namespace Template.Application.CQRS.Employee.Handler.Commands
 {
     public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, Guid>
     {

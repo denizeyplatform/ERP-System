@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Template.Application.DTO;
 
-namespace Template.Application.CQRS.Query
+namespace Template.Application.CQRS.Employee.Query
 {
     public record GetEmployeeByIdQuery(Guid Id) : IRequest<EmployeeDto>;
 }

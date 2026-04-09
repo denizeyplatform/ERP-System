@@ -14,28 +14,37 @@ namespace Template.Infrastructure.Configuration
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(
-         this IServiceCollection services,
-         IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure
+            (this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDBContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-       
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<AppDbContext>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddJwtBearer();
+
 
             services.AddMemoryCache();
 
             //services.AddScoped<ICacheService, MemoryCacheService>();
 
+            return services;
+        }
+
+
+        public static IServiceCollection AddIdentityConfig(this IServiceCollection services)
+        {
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<AppDbContext>();
+
+            
             return services;
         }
     }

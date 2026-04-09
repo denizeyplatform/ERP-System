@@ -4,4 +4,5 @@
   <Project Path="Template.Contracts/Template.Contracts.csproj" Id="ee02206c-38ad-4669-8ce8-32fe9f59946a" />
   <Project Path="Template.Domain/Template.Domain.csproj" Id="8650771c-821c-47a8-8e3d-c18565793924" />
   <Project Path="Template.Infrastructure/Template.Infrastructure.csproj" Id="936fc2c4-41f7-4276-bd09-1e9e3cd02ed9" />
+  <Project Path="Template.Test/Template.Test.csproj" Id="490ca08d-4191-4494-adc0-29fc32212a52" />
 </Solution>
