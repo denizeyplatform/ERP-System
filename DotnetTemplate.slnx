@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Template.API/Template.API.csproj" Id="db7f7dfd-094e-4f6d-9104-534f5edc9b2f" />
+  <Project Path="Template.Application/Template.Application.csproj" Id="c193e222-46f5-49b0-8c8b-1129546e9401" />
+  <Project Path="Template.Contracts/Template.Contracts.csproj" Id="ee02206c-38ad-4669-8ce8-32fe9f59946a" />
+  <Project Path="Template.Domain/Template.Domain.csproj" Id="8650771c-821c-47a8-8e3d-c18565793924" />
+  <Project Path="Template.Infrastructure/Template.Infrastructure.csproj" Id="936fc2c4-41f7-4276-bd09-1e9e3cd02ed9" />
+</Solution>
