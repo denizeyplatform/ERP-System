@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Template.Application.Common.Behaviors
@@ -17,14 +19,15 @@ namespace Template.Application.Common.Behaviors
             _validators = validators;
         }
 
-        public async Task<TResponse> Handle(
-            TRequest request,
-            RequestHandlerDelegate<TResponse> next,
+        public async Task<TResponse> Handle(TRequest request,RequestHandlerDelegate<TResponse> next,
             CancellationToken ct)
         {
             if (_validators.Any())
             {
                 var context = new ValidationContext<TRequest>(request);
+                
+                var validationResults =
+                         await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, ct)));
 
                 var failures = _validators
                     .Select(v => v.Validate(context))

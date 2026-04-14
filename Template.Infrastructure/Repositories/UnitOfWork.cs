@@ -18,6 +18,11 @@ namespace Template.Infrastructure.Repositories
         private readonly ILogger<UnitOfWork> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public IEmployeeRepository EmployeeRepository { get; set; }
+        public IAttendanceRepository AttendanceRepository { get; set; }
+
+
+
         public UnitOfWork(
             ApplicationDBContext context,
             ILogger<UnitOfWork> logger,
@@ -28,6 +33,10 @@ namespace Template.Infrastructure.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public IRepository<T> Repository<T>() where T : BaseEntity
+        {
+            return new Repository<T>(_context);
+        }
         public async Task<int> SaveChangesAsync(
             CancellationToken cancellationToken = default)
         {
@@ -78,6 +87,7 @@ namespace Template.Infrastructure.Repositories
             }
         }
 
+      
         public void Dispose()
         {
             _context.Dispose();

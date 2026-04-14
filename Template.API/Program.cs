@@ -6,6 +6,7 @@ using Serilog.Sinks;
 using Serilog.Sinks.File;
 using Serilog.Sinks.File; // For File sink and RollingInterval
 using Template.API.Configuration;
+using Template.API.Exceptions.Handler;
 using Template.API.Middleware;
 using Template.Application.Configuration;
 using Template.Infrastructure.Configuration; 
@@ -30,7 +31,8 @@ builder.Services.AddJWTConfig();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddIdentityConfig();
 
-
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -67,7 +69,7 @@ app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
-
+app.UseExceptionHandler();
 app.MapControllers();
 app.MapGet("/", () => Results.Redirect("/swagger"));
 app.Run();

@@ -8,8 +8,7 @@ using Template.Application.CQRS.Employee.Command;
 
 namespace Template.Application.CQRS.Employee.Handler.Commands
 {
-    public class UpdateEmployeeHandler
-    : IRequestHandler<UpdateEmployeeCommand, bool>
+    public class UpdateEmployeeHandler : IRequestHandler<UpdateEmployeeCommand, bool>
     {
         
 

@@ -7,7 +7,7 @@ using Template.Domain.Common;
 
 namespace Template.Domain.Interfaces
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity 
     {
         Task<T?> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();

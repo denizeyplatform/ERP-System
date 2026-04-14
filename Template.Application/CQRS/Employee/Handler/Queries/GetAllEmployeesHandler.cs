@@ -9,8 +9,7 @@ using Template.Application.DTO;
 
 namespace Template.Application.CQRS.Employee.Handler.Queries
 {
-    public class GetAllEmployeesHandler
-    : IRequestHandler<GetAllEmployeesQuery, List<EmployeeDto>>
+    public class GetAllEmployeesHandler : IRequestHandler<GetAllEmployeesQuery, List<EmployeeDto>>
     {
         
 

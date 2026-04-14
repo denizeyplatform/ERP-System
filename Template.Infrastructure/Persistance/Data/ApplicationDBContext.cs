@@ -20,6 +20,8 @@ namespace Template.Infrastructure.Persistance.Data
 
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+
 
         //protected override void OnModelCreating(ModelBuilder builder)
         //{

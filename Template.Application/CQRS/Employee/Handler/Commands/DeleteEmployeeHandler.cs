@@ -8,8 +8,7 @@ using Template.Application.CQRS.Employee.Command;
 
 namespace Template.Application.CQRS.Employee.Handler.Commands
 {
-    public class DeleteEmployeeHandler
-    : IRequestHandler<DeleteEmployeeCommand, bool>
+    public class DeleteEmployeeHandler : IRequestHandler<DeleteEmployeeCommand, bool>
     {
         
 

@@ -10,5 +10,9 @@ namespace Template.Application.Features.Service.Employee
     public interface IEmployeeService
     {
         Task<bool> createEmployee(EmployeeDto employeedto);
+        Task<bool> updateEmployee(int id, EmployeeDto employeedto);
+         Task<bool> deleteEmployee(int id);
+         Task<EmployeeDto> getEmployeeById(int id);
+         Task<List<EmployeeDto>> getAllEmployees();
     }
 }

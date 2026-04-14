@@ -18,9 +18,7 @@ namespace Template.Application.Common.Behaviors
             _currentUser = currentUser;
         }
 
-        public async Task<TResponse> Handle(
-            TRequest request,
-            RequestHandlerDelegate<TResponse> next,
+        public async Task<TResponse> Handle(TRequest request,RequestHandlerDelegate<TResponse> next,
             CancellationToken ct)
         {
             // Example rule: only Admin can delete
