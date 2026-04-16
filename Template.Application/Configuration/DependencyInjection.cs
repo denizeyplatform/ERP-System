@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Template.Application.Automapper;
 using Template.Application.Common.Behaviors;
 using Template.Application.Common.Interfaces;
+using Template.Application.Common.Validations.Attendance;
 using Template.Application.Common.Validations.Employee;
 using Template.Application.CQRS.Employee.Command;
 using Template.Application.Features.Service;
@@ -29,7 +30,8 @@ namespace Template.Application.Configuration
 
 
             services.AddValidatorsFromAssembly(typeof(CreateEmployeeValidator).Assembly);
-  
+
+            services.AddValidatorsFromAssembly(typeof(CheckInAtendanceValidator).Assembly);
 
             services.AddAutoMapper(cfg => { }, typeof(EmployeeProfile).Assembly);
 

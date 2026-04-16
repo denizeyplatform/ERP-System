@@ -8,6 +8,7 @@ using Serilog.Sinks.File; // For File sink and RollingInterval
 using Template.API.Configuration;
 using Template.API.Exceptions.Handler;
 using Template.API.Middleware;
+using Template.Application.Common.Behaviors;
 using Template.Application.Configuration;
 using Template.Infrastructure.Configuration; 
 
@@ -37,7 +38,11 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
+});
 
 
 Log.Logger = new LoggerConfiguration()
@@ -69,7 +74,9 @@ app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
+
 app.UseExceptionHandler();
+
 app.MapControllers();
 app.MapGet("/", () => Results.Redirect("/swagger"));
 app.Run();

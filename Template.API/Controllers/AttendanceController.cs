@@ -1,9 +1,13 @@
-﻿using MediatR;
+﻿using Azure.Core;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Template.Application.CQRS.Attendance.Command;
 using Template.Application.CQRS.Attendance.Query;
+using Template.Application.DTO;
 using Template.Application.Features.Service.Employee;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Template.API.Controllers
 {
@@ -12,7 +16,6 @@ namespace Template.API.Controllers
     public class AttendanceController : ControllerBase
     {
         public IMediator _mediator;
-
         public AttendanceController(IMediator mediator)
         {
             _mediator = mediator;
