@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Filtters\**" />
+    <Content Remove="Filtters\**" />
+    <EmbeddedResource Remove="Filtters\**" />
+    <None Remove="Filtters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Exceptions\Handler\CustomExceptionHandler.cs~RF604e5aa.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.13">
       <PrivateAssets>all</PrivateAssets>
@@ -24,10 +35,6 @@
     <PackageReference Include="Serilog.Enrichers.Environment" />
     <PackageReference Include="Serilog.Enrichers.Thread" />
     <PackageReference Include="Serilog.Enrichers.Process" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Filtters\" />
   </ItemGroup>
 
   <ItemGroup>

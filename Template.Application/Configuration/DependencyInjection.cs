@@ -7,6 +7,8 @@ using Template.Application.Common.Behaviors;
 using Template.Application.Common.Interfaces;
 using Template.Application.Common.Validations.Attendance;
 using Template.Application.Common.Validations.Employee;
+using Template.Application.CQRS.Attendance.Command;
+using Template.Application.CQRS.Attendance.Command.Handler;
 using Template.Application.CQRS.Employee.Command;
 using Template.Application.Features.Service;
 using Template.Application.Features.Service.Employee;
@@ -23,13 +25,13 @@ namespace Template.Application.Configuration
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
 
             services.AddMediatR(cfg =>
-                cfg.RegisterServicesFromAssembly(typeof(CreateEmployeeCommand).Assembly));
-
-            services.AddMediatR(cfg =>
-                cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-
+            {
+                cfg.RegisterServicesFromAssembly(typeof(CheckInAttendanceHandler).Assembly);
+            });
 
             services.AddValidatorsFromAssembly(typeof(CreateEmployeeValidator).Assembly);
+            services.AddValidatorsFromAssembly(typeof(AttendanceDateRangeValidation).Assembly);
+
 
             services.AddValidatorsFromAssembly(typeof(CheckInAtendanceValidator).Assembly);
 

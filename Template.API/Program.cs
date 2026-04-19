@@ -20,10 +20,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
-
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
+    config.AddOpenBehavior(typeof(PerformanceBehavior<,>));
+    config.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
+});
 builder.Services.AddAPI();
-
-
 
 builder.Services.AddApplication();
 builder.Services.AddJWTConfig();
@@ -38,11 +43,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMediatR(config =>
-{
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-});
+
 
 
 Log.Logger = new LoggerConfiguration()
@@ -57,8 +58,11 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 builder.WebHost.UseSerilog();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
 var app = builder.Build();
 
+app.UseExceptionHandler();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -71,11 +75,11 @@ app.UseHttpsRedirection();
 
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
-app.UseMiddleware<ExceptionMiddleware>();
+//app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 
-app.UseExceptionHandler();
+
 
 app.MapControllers();
 app.MapGet("/", () => Results.Redirect("/swagger"));
