@@ -1,4 +1,7 @@
 <Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
   <Project Path="Template.API/Template.API.csproj" Id="db7f7dfd-094e-4f6d-9104-534f5edc9b2f" />
   <Project Path="Template.Application/Template.Application.csproj" Id="c193e222-46f5-49b0-8c8b-1129546e9401" />
   <Project Path="Template.Contracts/Template.Contracts.csproj" Id="ee02206c-38ad-4669-8ce8-32fe9f59946a" />

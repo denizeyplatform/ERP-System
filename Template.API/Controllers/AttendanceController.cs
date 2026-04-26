@@ -16,19 +16,34 @@ namespace Template.API.Controllers
     public class AttendanceController : ControllerBase
     {
         public IMediator _mediator;
-        public AttendanceController(IMediator mediator)
+        public ILogger<AttendanceController> _logger;
+        public AttendanceController(IMediator mediator, ILogger<AttendanceController> logger)
         {
             _mediator = mediator;
-
+            _logger = logger;
         }
 
 
         [HttpPost]
         public async Task<IActionResult> CheckIn(CheckInAttendanceCommand command)
         {
-            var isCkecked = await _mediator.Send(command);
+            try
+            {
 
-            return Ok("Checked in successfully");
+                _logger.LogDebug("CheckIn request is called from ${0} and at time ${1}"
+                    , command.requestDto.EmployeeId, command.requestDto.CheckInTime);
+
+                var isCkecked = await _mediator.Send(command);
+
+                return Ok("Checked in successfully");
+
+            } catch (Exception ex)
+            {
+                _logger.LogDebug($"There is an error with {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+
+         
         }
 
         [HttpGet("Get/Attendance")]

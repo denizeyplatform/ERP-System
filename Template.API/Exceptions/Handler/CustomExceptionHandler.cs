@@ -13,10 +13,7 @@ namespace Template.API.Exceptions.Handler;
 public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IExceptionHandler
 {
 
-    public async ValueTask<bool> TryHandleAsync(
-    HttpContext context,
-    Exception exception,
-    CancellationToken cancellationToken)
+    public async ValueTask<bool> TryHandleAsync(HttpContext context,Exception exception,CancellationToken cancellationToken)
     {
         logger.LogError(exception,
             "Error Message: {exceptionMessage}, Time: {time}",

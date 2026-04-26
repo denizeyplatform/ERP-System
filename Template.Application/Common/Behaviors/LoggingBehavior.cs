@@ -17,9 +17,7 @@ namespace Template.Application.Common.Behaviors
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(
-            TRequest request,
-            RequestHandlerDelegate<TResponse> next,
+        public async Task<TResponse> Handle(TRequest request,RequestHandlerDelegate<TResponse> next,
             CancellationToken ct)
         {
             var requestName = typeof(TRequest).Name;
@@ -29,7 +27,7 @@ namespace Template.Application.Common.Behaviors
 
             var response = await next();
 
-            _logger.LogInformation($"Handled {requestName}");
+             _logger.LogInformation($"Handled {requestName}");
             _logger.LogInformation($"Response Data: {@response}");
 
             return response;

@@ -1,10 +1,9 @@
-using Serilog;
-using Serilog; // For Serilog types
-using Serilog.Events;
-using Serilog.Events; // For LogEventLevel
+using Serilog; 
+using Serilog.Events; 
 using Serilog.Sinks;
-using Serilog.Sinks.File;
+using Serilog.Sinks.Elasticsearch;
 using Serilog.Sinks.File; // For File sink and RollingInterval
+using Serilog.AspNetCore; // Add this using directive
 using Template.API.Configuration;
 using Template.API.Exceptions.Handler;
 using Template.API.Middleware;
@@ -18,7 +17,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Logging
+LoggingConfiguration.ConfigureLogging(builder);
+
+// Telemetry
+OpenTelemetryConfiguration.ConfigureTelemetry(builder.Services);
+
+
+
 
 builder.Services.AddMediatR(config =>
 {
@@ -44,19 +50,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+builder.Host.UseSerilog();
 
 
-Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .Enrich.WithMachineName()
-    .Enrich.WithThreadId()
-    .WriteTo.Console()
-    .WriteTo.File(
-        "logs/log-.txt",
-        rollingInterval: RollingInterval.Day, 
-        retainedFileCountLimit: 30)
-    .CreateLogger();
-builder.WebHost.UseSerilog();
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
@@ -79,8 +76,9 @@ app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.UseAuthorization();
 
-
-
+// Prometheus endpoint
+//app.MapPrometheusScrapingEndpoint();
+////app.UseSerilogRequestLogging();
 app.MapControllers();
 app.MapGet("/", () => Results.Redirect("/swagger"));
 app.Run();
