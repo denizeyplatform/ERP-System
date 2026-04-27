@@ -76,9 +76,11 @@ app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.UseAuthorization();
 
+app.UseSerilogRequestLogging();
 // Prometheus endpoint
-//app.MapPrometheusScrapingEndpoint();
-////app.UseSerilogRequestLogging();
+app.MapPrometheusScrapingEndpoint(); // /metrics
+
+
 app.MapControllers();
 app.MapGet("/", () => Results.Redirect("/swagger"));
 app.Run();

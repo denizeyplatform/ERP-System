@@ -30,7 +30,7 @@ namespace Template.API.Controllers
             try
             {
 
-                _logger.LogDebug("CheckIn request is called from ${0} and at time ${1}"
+                _logger.LogInformation("CheckIn request is called from ${0} and at time ${1}"
                     , command.requestDto.EmployeeId, command.requestDto.CheckInTime);
 
                 var isCkecked = await _mediator.Send(command);
