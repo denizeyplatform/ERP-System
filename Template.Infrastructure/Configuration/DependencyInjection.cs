@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using Template.Domain.Interfaces;
 using Template.Infrastructure.Persistance.Data;
 using Template.Infrastructure.Repositories;
+using Template.Infrastructure.Services.CacheService;
 
 namespace Template.Infrastructure.Configuration
 {
@@ -22,27 +24,37 @@ namespace Template.Infrastructure.Configuration
                     configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
-
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            
 
-
-
-            services.AddMemoryCache();
-
-            //services.AddScoped<ICacheService, MemoryCacheService>();
+            AddRedisConfig(services, configuration);
+            AddIdentityConfig(services);
 
             return services;
         }
 
+        public static IServiceCollection AddRedisConfig(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddMemoryCache();
+
+            services.Configure<RedisSettings>(
+                configuration.GetSection("Redis"));
+
+            var redisConnection =
+                configuration["Redis:ConnectionString"];
+
+            services.AddSingleton<IConnectionMultiplexer>(
+                ConnectionMultiplexer.Connect(redisConnection!));
+
+            services.AddScoped<ICacheService, RedisCacheService>();
+
+            return services;
+        }
 
         public static IServiceCollection AddIdentityConfig(this IServiceCollection services)
         {
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<AppDbContext>();
+           
 
             
             return services;

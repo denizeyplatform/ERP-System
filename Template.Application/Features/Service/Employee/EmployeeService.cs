@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Application.DTO;
-using Template.Domain.Entities;
+using Template.Domain.Entities.HRM;
 using Template.Domain.Interfaces;
 
 namespace Template.Application.Features.Service.Employee
@@ -28,11 +28,11 @@ namespace Template.Application.Features.Service.Employee
         }
         public async Task<bool> createEmployee(EmployeeDto employeedto)
         {
-            var repo = _mapper.Map<Domain.Entities.Employee>(employeedto);
+            var repo = _mapper.Map<Domain.Entities.HRM.Employee>(employeedto);
          
-            await _unitOfWork.AttendanceRepository.checkIn(new Domain.Entities.Attendance() { });
+            await _unitOfWork.AttendanceRepository.checkIn(new Domain.Entities.HRM.Attendance() { });
 
-            await _unitOfWork.Repository<Domain.Entities.Employee>().AddAsync(repo);
+            await _unitOfWork.Repository<Domain.Entities.HRM.Employee>().AddAsync(repo);
 
             await _unitOfWork.Repository<Attendance>().GetAllAsync();
 

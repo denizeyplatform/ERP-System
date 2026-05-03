@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\Ecommerce\" />
+    <Folder Include="Entities\Accounting\" />
+    <Folder Include="Entities\SuplyChain\" />
     <Folder Include="Enums\" />
     <Folder Include="Specifications\" />
     <Folder Include="ValueObjects\" />

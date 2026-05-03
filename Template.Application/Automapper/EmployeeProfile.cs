@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Application.DTO;
-using Template.Domain.Entities;
+using Template.Domain.Entities.HRM;
 
 namespace Template.Application.Automapper
 {

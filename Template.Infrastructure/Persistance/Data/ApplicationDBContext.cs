@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Common;
-using Template.Domain.Entities;
+using Template.Domain.Entities.HRM;
 
 namespace Template.Infrastructure.Persistance.Data
 {

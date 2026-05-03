@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Template.Domain.Entities;
+using Template.Domain.Entities.HRM;
 using Template.Domain.Interfaces;
 using Template.Infrastructure.Persistance.Data;
 
