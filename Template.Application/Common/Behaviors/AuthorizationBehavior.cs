@@ -9,7 +9,7 @@ using Template.Application.CQRS.Employee.Command;
 
 namespace Template.Application.Common.Behaviors
 {
-    public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
         private readonly ICurrentUserService _currentUser;
 

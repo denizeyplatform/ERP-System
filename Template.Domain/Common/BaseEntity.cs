@@ -16,7 +16,7 @@ namespace Template.Domain.Common
         public DateTime? ModifiedAt { get;  set; }
         public string? ModifiedBy { get;  set; }
 
-        public bool IsDeleted { get; protected set; }
+        public bool IsDeleted { get; set; } = false;
 
         public void SoftDelete()
         {

@@ -28,7 +28,7 @@ using System.IO;
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDBContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
-            // Return a new instance of DBContextApplication
+            
             return new ApplicationDBContext(optionsBuilder.Options);
         }
     }

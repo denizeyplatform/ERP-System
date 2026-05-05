@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Application.DTO;
+using Template.Application.Features.Interface;
 using Template.Domain.Entities.HRM;
 using Template.Domain.Interfaces;
+using Template.Domain.Interfaces.HRM;
 
-namespace Template.Application.Features.Service.Employee
+namespace Template.Application.Features.Service.HRM
 {
     public class EmployeeService : IEmployeeService
     {

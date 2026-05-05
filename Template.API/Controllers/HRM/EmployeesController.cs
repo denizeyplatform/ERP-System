@@ -6,11 +6,11 @@ using Template.Application.Common.Paginations;
 using Template.Application.CQRS.Employee.Command;
 using Template.Application.CQRS.Employee.Query;
 using Template.Application.DTO;
-using Template.Application.Features.Service.Employee;
+using Template.Application.Features.Interface;
 
-namespace Template.API.Controllers
+namespace Template.API.Controllers.HRM
 {
-    [Route("api/[controller]")]
+    [Route("api/HRM/[controller]")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Common;
+using Template.Domain.Interfaces.HRM;
 
 namespace Template.Domain.Interfaces
 {

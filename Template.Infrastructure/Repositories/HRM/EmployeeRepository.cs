@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Entities.HRM;
-using Template.Domain.Interfaces;
+using Template.Domain.Interfaces.HRM;
 using Template.Infrastructure.Persistance.Data;
 
-namespace Template.Infrastructure.Repositories
+namespace Template.Infrastructure.Repositories.HRM
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {

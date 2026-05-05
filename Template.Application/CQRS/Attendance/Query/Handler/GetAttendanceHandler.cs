@@ -15,8 +15,9 @@ namespace Template.Application.CQRS.Attendance.Query.Handler
         {
 
 
+            //  logic 
+            // Get attendance from redis
             // service
-
 
 
             return Task.FromResult(new List<AttendanceDto>());

@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Template.Application.CQRS.Attendance.Command;
 using Template.Application.CQRS.Attendance.Query;
 using Template.Application.DTO;
-using Template.Application.Features.Service.Employee;
+using Template.Application.Features.Service.HRM;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace Template.API.Controllers
+namespace Template.API.Controllers.HRM
 {
-    [Route("api/[controller]")]
+    [Route("api/HRM/[controller]")]
     [ApiController]
     public class AttendanceController : ControllerBase
     {

@@ -8,30 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Common;
 using Template.Domain.Interfaces;
+using Template.Domain.Interfaces.HRM;
 using Template.Infrastructure.Persistance.Data;
 
 namespace Template.Infrastructure.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(
+        ApplicationDBContext context,
+        ILogger<UnitOfWork> logger,
+        IHttpContextAccessor httpContextAccessor) : IUnitOfWork
     {
-        private readonly ApplicationDBContext _context;
-        private readonly ILogger<UnitOfWork> _logger;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ApplicationDBContext _context = context;
+        private readonly ILogger<UnitOfWork> _logger = logger;
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-        public IEmployeeRepository EmployeeRepository { get; set; }
-        public IAttendanceRepository AttendanceRepository { get; set; }
-
-
-
-        public UnitOfWork(
-            ApplicationDBContext context,
-            ILogger<UnitOfWork> logger,
-            IHttpContextAccessor httpContextAccessor)
-        {
-            _context = context;
-            _logger = logger;
-            _httpContextAccessor = httpContextAccessor;
-        }
+        public IEmployeeRepository? EmployeeRepository { get; set; } 
+        public IAttendanceRepository? AttendanceRepository { get; set; }
 
         public IRepository<T> Repository<T>() where T : BaseEntity
         {

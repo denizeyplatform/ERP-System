@@ -8,7 +8,7 @@ namespace Template.Application.DTO
 {
     public class AttendanceDateRangeDto
     {
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public string StartDate { get; set; } = string.Empty;
+        public string EndDate { get; set; } = string.Empty;
     }
 }

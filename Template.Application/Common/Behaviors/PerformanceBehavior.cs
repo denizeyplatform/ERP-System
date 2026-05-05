@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Template.Application.Common.Behaviors
 {
-    public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
         private readonly Stopwatch _timer = new();
 

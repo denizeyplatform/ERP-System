@@ -10,8 +10,10 @@ using Template.Application.Common.Validations.Employee;
 using Template.Application.CQRS.Attendance.Command;
 using Template.Application.CQRS.Attendance.Command.Handler;
 using Template.Application.CQRS.Employee.Command;
+using Template.Application.Features.Interface;
 using Template.Application.Features.Service;
-using Template.Application.Features.Service.Employee;
+using Template.Application.Features.Service.Commerce;
+using Template.Application.Features.Service.HRM;
 
 namespace Template.Application.Configuration
 {
@@ -23,6 +25,8 @@ namespace Template.Application.Configuration
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+
 
             services.AddMediatR(cfg =>
             {
@@ -40,6 +44,13 @@ namespace Template.Application.Configuration
 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+            // Commerce
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
 
             return services;

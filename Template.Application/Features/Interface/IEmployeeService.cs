@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Template.Application.DTO;
 
-namespace Template.Application.Features.Service.Employee
+namespace Template.Application.Features.Interface
 {
     public interface IEmployeeService
     {

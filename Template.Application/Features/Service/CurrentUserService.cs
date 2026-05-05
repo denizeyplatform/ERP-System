@@ -18,7 +18,7 @@ namespace Template.Application.Features.Service
         }
 
         public string UserId =>
-            _httpContextAccessor.HttpContext?.User?.FindFirst("sub")?.Value;
+            _httpContextAccessor.HttpContext?.User?.FindFirst("sub")?.Value ?? string.Empty;
 
         public bool IsInRole(string role) =>
             _httpContextAccessor.HttpContext?.User?.IsInRole(role) ?? false;

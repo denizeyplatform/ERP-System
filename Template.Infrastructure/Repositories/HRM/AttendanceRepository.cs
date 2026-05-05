@@ -1,27 +1,39 @@
-﻿using System;
+﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Entities.HRM;
-using Template.Domain.Interfaces;
+using Template.Domain.Interfaces.HRM;
 using Template.Infrastructure.Persistance.Data;
 
-namespace Template.Infrastructure.Repositories
+namespace Template.Infrastructure.Repositories.HRM
 {
     public class AttendanceRepository : Repository<Attendance>, IAttendanceRepository
     {
-        public AttendanceRepository(ApplicationDBContext context) : base(context)
+        private readonly IDatabase _redis;
+        public AttendanceRepository(ApplicationDBContext context, IConnectionMultiplexer redis) : base(context)
         {
-                
+            _redis = redis.GetDatabase();
         }
 
-        public Task<bool> checkIn(Attendance attendance)
+        public async Task<bool> checkIn(Attendance attendance)
         {
-            attendance.IsChecked = true;
-            _context.Attendances.Add(attendance);
-            _context.SaveChanges();
-            return Task.FromResult(true);
+            var checkQuery = await _redis.StringGetAsync("product:cccc");
+            if (checkQuery.IsNullOrEmpty)
+            {
+                attendance.IsChecked = true;
+                _context.Attendances.Add(attendance);
+                _context.SaveChanges();
+
+            }
+            else
+            {
+                // get from redis
+                // return checkQuery
+            }
+            return true;
         }
 
         public Task<bool> checkOut(Attendance attendance)

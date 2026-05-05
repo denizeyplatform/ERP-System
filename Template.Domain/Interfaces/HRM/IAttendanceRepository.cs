@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Entities.HRM;
 
-namespace Template.Domain.Interfaces
+namespace Template.Domain.Interfaces.HRM
 {
     public interface IAttendanceRepository
     {
